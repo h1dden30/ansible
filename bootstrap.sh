@@ -18,7 +18,7 @@ apt-get install -y --no-install-recommends ansible-core git curl
 
 echo "==> Vault password for this host's ansible-vault secrets"
 echo "    (this is the SAME password you used to encrypt group_vars/all/vault.yml)"
-read -rsp "Vault password: " VAULT_PASSWORD
+read -rsp "Vault password: " VAULT_PASSWORD < /dev/tty
 echo
 printf '%s' "$VAULT_PASSWORD" > /root/.vault_key
 chmod 600 /root/.vault_key
