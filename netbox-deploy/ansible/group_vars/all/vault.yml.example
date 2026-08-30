@@ -1,0 +1,16 @@
+---
+# group_vars/all/vault.yml.example
+#
+# Copy this to group_vars/all/vault.yml, fill in real values, THEN encrypt
+# it in place before committing:
+#
+#   ansible-vault encrypt group_vars/all/vault.yml --vault-password-file ~/.vault_key
+#
+# Never commit the unencrypted version. Add group_vars/all/vault.yml.example
+# to git (safe, no real secrets) but the real vault.yml should only ever
+# enter the repo already encrypted.
+
+vault_netbox_secret_key: "REPLACE_WITH_50_PLUS_RANDOM_CHARS"  # generate: openssl rand -base64 45
+vault_netbox_superuser_password: "REPLACE_ME"
+vault_postgres_password: "REPLACE_ME"
+vault_redis_password: "REPLACE_ME"

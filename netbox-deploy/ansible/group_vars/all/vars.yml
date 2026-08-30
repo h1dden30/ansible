@@ -1,0 +1,8 @@
+---
+config_repo_url: https://github.com/<you>/config-mgmt.git  # REPLACE with your real repo
+
+netbox_docker_repo: https://github.com/netbox-community/netbox-docker.git
+netbox_install_dir: /opt/netbox-docker
+netbox_superuser_name: admin
+netbox_superuser_email: admin@ebadkhan.dev
+

@@ -1,0 +1,29 @@
+---
+# roles/bootstrap/tasks/main.yml
+#
+# Installs a systemd service+timer for ansible-pull so it self-schedules
+# after the FIRST run (triggered manually by bootstrap.sh). Idempotent —
+# safe to run every pull, only actually changes anything the first time.
+
+- name: Install ansible-pull systemd service
+  ansible.builtin.template:
+    src: ansible-pull.service.j2
+    dest: /etc/systemd/system/ansible-pull.service
+    mode: '0644'
+  notify: reload systemd
+
+- name: Install ansible-pull systemd timer
+  ansible.builtin.template:
+    src: ansible-pull.timer.j2
+    dest: /etc/systemd/system/ansible-pull.timer
+    mode: '0644'
+  notify: reload systemd
+
+- name: Flush handlers so the timer unit is loaded before we enable it
+  ansible.builtin.meta: flush_handlers
+
+- name: Enable and start the ansible-pull timer
+  ansible.builtin.systemd:
+    name: ansible-pull.timer
+    enabled: true
+    state: started
