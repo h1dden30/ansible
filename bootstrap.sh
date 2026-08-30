@@ -9,7 +9,7 @@
 # on this host.
 set -euo pipefail
 
-REPO_URL="${CONFIG_REPO_URL:-https://github.com/<you>/config-mgmt.git}"
+REPO_URL="${CONFIG_REPO_URL:-https://github.com/h1dden30/ansible.git}"
 BRANCH="${CONFIG_REPO_BRANCH:-main}"
 
 echo "==> Installing Ansible + git"
