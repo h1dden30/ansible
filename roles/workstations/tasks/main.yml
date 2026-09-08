@@ -51,7 +51,7 @@
   - name: Install KDE 
     ansible.builtin.expect:
       command: pacman -S plasma
-      responses: 4
+      responses: "4"
 
 
  # - name: Install Zen Browser thru AUR
