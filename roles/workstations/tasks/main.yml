@@ -49,11 +49,11 @@
           changed_when: true
   
   - name: Install KDE 
-    ansible.builtin.expect:
-      command: pacman -S plasma
-      responses: 
-        "4"
-
+    community.general.pacman:
+      name:
+        - plasma
+        - kde-applications
+    state: present
 
  # - name: Install Zen Browser thru AUR
  # - name: Add shortcut for screenshot -> winkey + shift + 4 screenshot application? or is that included in kde
