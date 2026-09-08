@@ -8,6 +8,6 @@
   - name: Install packages
     community.general.pacman:
       name:
+      - btop
       - vi
-      - nano
       state: present

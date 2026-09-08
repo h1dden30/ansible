@@ -36,6 +36,7 @@
     when: yay_check.rc != 0
     become_user: aurbuilder
     block:
+
         - name: Clone yay repository
           ansible.builtin.git:
             repo: https://aur.archlinux.org/yay-bin.git
@@ -46,3 +47,12 @@
           args:
             chdir: /tmp/yay-bin
           changed_when: true
+  
+  - name: Install KDE 
+    ansible.builtin.expect:
+      command: pacman -S plasma
+      responses: 4
+
+
+ # - name: Install Zen Browser thru AUR
+ # - name: Add shortcut for screenshot -> winkey + shift + 4 screenshot application? or is that included in kde
