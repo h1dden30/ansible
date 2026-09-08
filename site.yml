@@ -4,6 +4,11 @@
   become: true
   pre_tasks: 
 
+  - name: Install sudo
+    community.general.pacman:
+      name: sudo 
+      state: present
+
   - name: Update all packages
     community.general.pacman:
       update_cache: true
