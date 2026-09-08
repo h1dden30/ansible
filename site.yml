@@ -7,7 +7,7 @@
     set_fact:
       device_role: >-
         {{ 'workstation' if 'wks' in ansible_hostname
-          else 'server' if 'srv' in ansible_hostname
+          else 'servers' if 'srv' in ansible_hostname
           else 'undefined' }}
 
   roles:
