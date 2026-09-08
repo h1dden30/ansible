@@ -5,6 +5,13 @@
       update_cache: true
       upgrade: true
 
+  - name: Install KDE 
+    community.general.pacman:
+      name:
+        - plasma
+        - kde-applications
+      state: present
+
   - name: Install prereqs
     community.general.pacman:
       name: 
@@ -48,12 +55,6 @@
             chdir: /tmp/yay-bin
           changed_when: true
   
-  - name: Install KDE 
-    community.general.pacman:
-      name:
-        - plasma
-        - kde-applications
-    state: present
 
  # - name: Install Zen Browser thru AUR
  # - name: Add shortcut for screenshot -> winkey + shift + 4 screenshot application? or is that included in kde
