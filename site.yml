@@ -1,0 +1,10 @@
+--- 
+
+- hosts: all
+  become: true
+  tasks: 
+
+  - name: Update all packages
+    community.general.pacman:
+      update_cache: true
+      upgrade: true
