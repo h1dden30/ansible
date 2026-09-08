@@ -1,10 +1,13 @@
 --- 
 
-- hosts: all
+- hosts: localhost
   become: true
-  tasks: 
+  pre_tasks: 
 
   - name: Update all packages
     community.general.pacman:
       update_cache: true
       upgrade: true
+
+  roles:
+  - workstations
