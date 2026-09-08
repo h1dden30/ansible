@@ -1,4 +1,12 @@
 ---
+
+  - name: Install prereqs
+    community.general.pacman:
+      name: 
+       - base-devel
+       - git
+      state: present
+  
   - name: Create AUR builder user
     ansible.builtin.user:
       name: aurbuilder
