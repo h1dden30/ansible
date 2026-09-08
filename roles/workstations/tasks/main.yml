@@ -1,10 +1,16 @@
 ---
 
+  - name: Update all packages
+    community.general.pacman:
+      update_cache: true
+      upgrade: true
+
   - name: Install prereqs
     community.general.pacman:
       name: 
        - base-devel
        - git
+       - sudo
       state: present
   
   - name: Create AUR builder user

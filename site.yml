@@ -1,18 +1,15 @@
---- 
-
+---
 - hosts: localhost
   become: true
-  pre_tasks: 
-
-  - name: Install sudo
-    community.general.pacman:
-      name: sudo 
-      state: present
-
-  - name: Update all packages
-    community.general.pacman:
-      update_cache: true
-      upgrade: true
+  tasks:
+  
+  - name: Set device role from hostname
+    set_fact:
+      device_role: >-
+        {{ 'workstation' if 'wks' in ansible_hostname
+          else 'server' if 'srv' in ansible_hostname
+          else 'undefined' }}
 
   roles:
   - workstations
+  - servers
