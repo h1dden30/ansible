@@ -2,14 +2,13 @@
 - hosts: localhost
   become: true
   tasks:
-  
-  - name: Set device role from hostname
-    set_fact:
-      device_role: >-
-        {{ 'workstation' if 'wks' in ansible_hostname
-          else 'servers' if 'srv' in ansible_hostname
-          else 'undefined' }}
 
-  roles:
-  - workstations
-  - servers
+  - name: Apply workstation role
+    ansible.builtin.include_role:
+      name: workstations
+    when: "'wks' in ansible_facts['nodename']"
+
+  - name: Apply server role
+    ansible.builtin.include_role:
+      name: servers
+    when: "'srv' in ansible_facts['nodename']"
