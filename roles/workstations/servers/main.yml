@@ -1,3 +1,5 @@
+---
+
   - name: Update all packages
     community.general.pacman:
       update_cache: true
