@@ -4,3 +4,10 @@
     community.general.pacman:
       update_cache: true
       upgrade: true
+
+  - name: Install packages
+    community.general.pacman:
+      name:
+        - vi
+        - nano
+    state: present
