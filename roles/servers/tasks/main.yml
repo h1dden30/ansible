@@ -9,5 +9,4 @@
     community.general.pacman:
       name:
       - btop
-      - vi
       state: present

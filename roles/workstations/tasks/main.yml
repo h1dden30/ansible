@@ -11,9 +11,14 @@
         - plasma
         - sddm
         - konsole
+        - plasma-x11-session
         - code
         - dolphin 
       state: present
+
+ # - name: Restart sddm               CREATE HANDLER
+  #  ansible.builtin.command:
+   #   cmd: systemctl restart sddm && systemctl enable sddm
 
   - name: Install prereqs
     community.general.pacman:
@@ -59,12 +64,12 @@
           changed_when: true
 
   - name: Install Zen Browser
-    become: false
     become_user: aurbuilder
     kewlfft.aur.aur:
       name: zen-browser-bin
       use: yay
       state: present
+
 
 
  # - name: Add shortcut for screenshot -> winkey + shift + 4 screenshot application? or is that included in kde
