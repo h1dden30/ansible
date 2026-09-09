@@ -9,8 +9,10 @@
     community.general.pacman:
       name:
         - plasma
-        - kde-applications
-        - code 
+        - sdmm
+        - konsole
+        - code
+        - dolphin 
       state: present
 
   - name: Install prereqs
