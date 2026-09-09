@@ -59,7 +59,7 @@
   - name: Install Zen Browser
     become: false
     become_user: aurbuilder
-    kewlfft.aur:
+    kewlfft.aur.aur:
       name: zen-browser-bin
       use: yay
       state: present
