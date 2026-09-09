@@ -55,7 +55,14 @@
           args:
             chdir: /tmp/yay-bin
           changed_when: true
-  
 
- # - name: Install Zen Browser thru AUR
+  - name: Install Zen Browser
+    become: false
+    become_user: aurbuilder
+    kewlfft.aur:
+      name: zen-browser-bin
+      use: yay
+      state: present
+
+
  # - name: Add shortcut for screenshot -> winkey + shift + 4 screenshot application? or is that included in kde
