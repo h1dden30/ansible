@@ -42,4 +42,5 @@
      - 10-help-text
      - 50-motd-news
      - 91-release-upgrade
+     - 60-unminimize
     ignore_errors: true 
