@@ -1,9 +1,0 @@
----
-- hosts: localhost
-  become: true
-  tasks:
-
-  - name: Apply server role
-    ansible.builtin.include_role:
-      name: servers
-    when: "'srv' in ansible_facts['nodename']"
