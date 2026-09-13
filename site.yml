@@ -3,6 +3,24 @@
   become: true
   tasks:
 
+  - name: Create ansible service account
+    ansible.builtin.user:
+     name: ansible-svc
+     system: yes
+     shell: /usr/sbin/nologin
+     create_home: no
+     state: present
+
+  - name: Grant ansible-svc scoped passwordless sudo
+    ansible.builtin.copy:
+     dest: /etc/sudoers.d/ansible-svc
+     content: |
+      ansible-svc ALL=(ALL) NOPASSWD: /usr/bin/apt, /usr/bin/apt-get, /bin/systemctl, /usr/bin/tee /etc/systemd/system/*
+     owner: root
+     group: root
+     mode: '0440'
+     validate: 'visudo -cf %s'
+
   - name: Apply workstation role
     ansible.builtin.include_role:
       name: workstations
