@@ -1,0 +1,9 @@
+all:
+  hosts:
+    srv-idp-01.ebadkhan.dev:
+    srv-ca-01.ebadkhan.dev:
+    srv-rproxy-01.ebadkhan.dev:
+    srv-dns-01.ebadkhan.dev:
+    srv-vpn-01.ebadkhan.dev:
+  vars:
+    ansible_user: ebadk

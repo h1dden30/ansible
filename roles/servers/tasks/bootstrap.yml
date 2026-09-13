@@ -29,7 +29,6 @@
      mode: '0440'
      validate: 'visudo -cf %s'
 
-
   - name: Deploy ansible-pull service unit
     ansible.builtin.copy:
      src: ansible-server-update.service
