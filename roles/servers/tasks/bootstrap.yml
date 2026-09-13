@@ -1,5 +1,14 @@
 ---
 
+  - name: Add color config to bashrc
+    ansible.builtin.blockinfile:
+     path: /home/ebadk/.bashrc
+     marker: "# {mark} ANSIBLE MANAGED COLOR BLOCK"
+     block: |
+      PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+      export CLICOLOR=1
+      export LS_COLORS='di=1;34:ln=1;36:ex=1;32'
+
   - name: Set timezone
     community.general.timezone:
       name: America/Detroit
