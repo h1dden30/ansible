@@ -1,5 +1,5 @@
 [Unit]
-Description=Run Ansible server maintenance playbook
+Description=Ansible Playbook
 Wants=network-online.target
 After=network-online.target
 

@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+
+  - name: Create ansible service account
+    ansible.builtin.user:
+     name: ansible-svc
+     system: yes
+     shell: /usr/sbin/nologin
+     create_home: no
+     state: present
+
+  - name: Change ansible-svc permissions
+    ansible.builtin.copy:
+     dest: /etc/sudoers.d/ansible-svc
+     content: |
+       ansible-svc ALL=(ALL) NOPASSWD: /usr/bin/apt, /usr/bin/apt-get, /bin/systemctl
+     owner: root
+     group: root
+     mode: '0440'
+     validate: 'visudo -cf %s'
+
+  - name: Bootstrap server role
+    ansible.builtin.include_role:
+      name: servers
+      tasks_from: bootstrap
+    when: "'srv' in ansible_facts['nodename']"

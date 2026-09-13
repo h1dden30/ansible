@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
-  connection: local
   become: true
   tasks:
+
     - name: Run recurring server updates
       ansible.builtin.include_role:
         name: servers
