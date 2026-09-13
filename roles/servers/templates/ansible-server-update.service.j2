@@ -1,1 +1,10 @@
+[Unit]
+Description=Run Ansible server maintenance playbook
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ansible-svc
+WorkingDirectory=/home/ebadk/ansible
 ExecStart=/usr/bin/ansible-pull -U https://github.com/h1dden30/ansible.git update.yml

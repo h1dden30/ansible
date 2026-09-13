@@ -39,3 +39,28 @@
      - 91-release-upgrade
      - 60-unminimize
     ignore_errors: true 
+
+  - name: Deploy ansible-pull service unit
+    ansible.builtin.template:
+      src: ansible-server-update.service.j2
+      dest: /etc/systemd/system/ansible-server-update.service
+      owner: root
+      group: root
+      mode: '0644'
+    notify: reload systemd
+
+  - name: Deploy ansible-pull timer unit
+    ansible.builtin.template:
+      src: ansible-server-update.timer.j2
+      dest: /etc/systemd/system/ansible-server-update.timer
+      owner: root
+      group: root
+      mode: '0644'
+    notify: reload systemd
+
+  - name: Enable and start the timer
+    ansible.builtin.systemd:
+      name: ansible-server-update.timer
+      enabled: true
+      state: started
+      daemon_reload: true
