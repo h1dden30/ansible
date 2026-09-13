@@ -25,7 +25,7 @@
      name: ansible-svc
      system: yes
      shell: /usr/sbin/nologin
-     create_home: no
+     create_home: yes
      state: present
 
   - name: Change ansible-svc permissions
