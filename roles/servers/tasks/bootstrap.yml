@@ -1,14 +1,5 @@
 ---
 
-  - name: Add color config to bashrc
-    ansible.builtin.blockinfile:
-     path: /home/ebadk/.bashrc
-     marker: "# {mark} ANSIBLE MANAGED COLOR BLOCK"
-     block: |
-      PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-      export CLICOLOR=1
-      export LS_COLORS='di=1;34:ln=1;36:ex=1;32'
-
   - name: Set timezone
     community.general.timezone:
       name: America/Detroit
@@ -18,7 +9,27 @@
       name:
       - btop
       - tmux
+      - eza
       state: present
+
+  - name: Install Starship
+    ansible.builtin.shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
+    args:
+     creates: /usr/local/bin/starship
+
+  - name: Enable Starship in bashrc
+    ansible.builtin.lineinfile:
+     path: /home/ebadk/.bashrc
+     line: 'eval "$(starship init bash)"'
+     insertafter: EOF 
+
+  - name: Deploy Starship config
+    ansible.builtin.copy:
+      src: starship.toml
+      dest: /home/ebadk/.config/starship.toml
+      owner: ebadk
+      group: ebadk
+      mode: '0644'
 
   - name: Create ansible service account
     ansible.builtin.user:
