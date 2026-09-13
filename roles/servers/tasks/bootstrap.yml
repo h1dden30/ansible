@@ -1,5 +1,9 @@
 ---
 
+  - name: Set timezone
+    community.general.timezone:
+      name: America/Detroit
+
   - name: Install packages
     ansible.builtin.apt:
       name:
