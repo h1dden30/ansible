@@ -1,7 +1,21 @@
 ---
 - hosts: localhost
   become: true
+  
+  vars_prompt:
+  - name: password
+    prompt: "Create password for ebadk"
+    private: true
+
   tasks:
+
+  - name: Add sudo user
+    user: 
+      name: ebadk
+      password: "{{ password | password_hash('sha512') }}"
+      group: sudo
+      create_home: yes
+      state: present
 
   - name: Apply workstation role
     ansible.builtin.include_role:

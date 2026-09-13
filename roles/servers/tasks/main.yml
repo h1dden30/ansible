@@ -1,12 +1,17 @@
 ---
 
   - name: Update all packages
-    community.general.pacman:
-      update_cache: true
-      upgrade: true
+    apt:
+      update_cache: yes
+      upgrade: safe
 
   - name: Install packages
-    community.general.pacman:
+    apt:
       name:
       - btop
       state: present
+
+  - name: Disable root account
+    user: 
+      name: root
+      password_lock: true
