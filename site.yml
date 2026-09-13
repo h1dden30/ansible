@@ -16,7 +16,7 @@
     ansible.builtin.copy:
      dest: /etc/sudoers.d/ansible-svc
      content: |
-      ansible-svc ALL=(ALL) NOPASSWD: /usr/bin/apt, /usr/bin/apt-get, /bin/systemctl, /usr/bin/tee /etc/systemd/system/*
+       ansible-svc ALL=(ALL) NOPASSWD: /usr/bin/apt, /usr/bin/apt-get, /bin/systemctl
      owner: root
      group: root
      mode: '0440'
