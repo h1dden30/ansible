@@ -3,7 +3,7 @@
   become: true
   tasks:
 
-    - name: Run recurring server updates
-      ansible.builtin.include_role:
-        name: servers
-        tasks_from: update
+    - name: Update all packages
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: safe

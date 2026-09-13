@@ -7,6 +7,25 @@
       - tmux
       state: present
 
+  - name: Create ansible service account
+    ansible.builtin.user:
+     name: ansible-svc
+     system: yes
+     shell: /usr/sbin/nologin
+     create_home: no
+     state: present
+
+  - name: Change ansible-svc permissions
+    ansible.builtin.copy:
+     dest: /etc/sudoers.d/ansible-svc
+     content: |
+       ansible-svc ALL=(ALL) NOPASSWD: /usr/bin/apt, /usr/bin/apt-get, /bin/systemctl
+     owner: root
+     group: root
+     mode: '0440'
+     validate: 'visudo -cf %s'
+
+
   - name: Deploy ansible-pull service unit
     ansible.builtin.copy:
      src: ansible-server-update.service
