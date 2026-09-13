@@ -23,6 +23,14 @@
      line: 'eval "$(starship init bash)"'
      insertafter: EOF 
 
+  - name: Ensure .config directory exists
+    ansible.builtin.file:
+      path: /home/ebadk/.config
+      state: directory
+      owner: ebadk
+      group: ebadk
+      mode: '0755'
+
   - name: Deploy Starship config
     ansible.builtin.copy:
       src: starship.toml
