@@ -12,7 +12,7 @@
      create_home: no
      state: present
 
-  - name: Grant ansible-svc scoped passwordless sudo
+  - name: Change ansible-svc permissions
     ansible.builtin.copy:
      dest: /etc/sudoers.d/ansible-svc
      content: |
