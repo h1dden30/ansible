@@ -6,5 +6,6 @@ After=network-online.target
 [Service]
 Type=oneshot
 User=ansible-svc
+Environment=ANSIBLE_BECOME_ASK_PASS=False
 WorkingDirectory=/home/ansible-svc
 ExecStart=/usr/bin/ansible-pull -U https://github.com/h1dden30/ansible.git update.yml
