@@ -9,6 +9,7 @@
     apt:
       name:
       - btop
+      - tmux
       state: present
 
   - name: Disable root account
