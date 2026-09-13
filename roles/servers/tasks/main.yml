@@ -21,8 +21,8 @@
      mode: '0644'
 
   - name: Deploy dynamic MOTD script
-    ansible.builtin.template:
-     src: 99-custom-motd.j2
+    ansible.builtin.copy:
+     src: 99-custom-motd
      dest: /etc/update-motd.d/99-custom-motd
      owner: root
      group: root
@@ -41,21 +41,22 @@
     ignore_errors: true 
 
   - name: Deploy ansible-pull service unit
-    ansible.builtin.template:
-      src: ansible-server-update.service.j2
-      dest: /etc/systemd/system/ansible-server-update.service
-      owner: root
-      group: root
-      mode: '0644'
+    ansible.builtin.copy:
+     src: ansible-server-update.service
+     dest: /etc/systemd/system/ansible-server-update.service
+     owner: root
+     group: root
+     mode: '0644'
     notify: reload systemd
 
+
   - name: Deploy ansible-pull timer unit
-    ansible.builtin.template:
-      src: ansible-server-update.timer.j2
-      dest: /etc/systemd/system/ansible-server-update.timer
-      owner: root
-      group: root
-      mode: '0644'
+    ansible.builtin.copy:
+     src: ansible-server-update.timer
+     dest: /etc/systemd/system/ansible-server-update.timer
+     owner: root
+     group: root
+     mode: '0644'
     notify: reload systemd
 
   - name: Enable and start the timer
