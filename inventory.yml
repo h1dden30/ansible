@@ -5,5 +5,7 @@ all:
     srv-rproxy-01.ebadkhan.dev:
     srv-dns-01.ebadkhan.dev:
     srv-vpn-01.ebadkhan.dev:
+    srv-stat-01.ebadkhan.dev:
+    srv-log-01.ebadkhan.dev:
   vars:
     ansible_user: ebadk
